@@ -27,7 +27,11 @@ import ClearDups
 def BBO(objf,lb,ub,dim,PopSize,iters):
     # Defining the solution variable for saving output variables
     s=solution()
-    
+
+    # Initializing BBO parameters
+    pmutate = 0.01; # initial mutation probability
+    Keep = 2; # elitism parameter: how many of the best habitats to keep from one generation to the next
+        
     # Initializing the parameters with default values
     fit = numpy.zeros(PopSize)
     EliteSolution=numpy.zeros((Keep,dim))
@@ -38,9 +42,6 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
     MinCost=numpy.zeros(iters)
     Bestpos=numpy.zeros(dim)
 
-    # Initializing BBO parameters
-    pmutate = 0.01; # initial mutation probability
-    Keep = 2; # elitism parameter: how many of the best habitats to keep from one generation to the next
 
     # Initializing Population
     pos=numpy.random.uniform(0,1,(PopSize,dim)) *(ub-lb)+lb
