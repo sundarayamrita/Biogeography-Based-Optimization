@@ -1,19 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Python code of Biogeography-Based Optimization (BBO)
-Coded by: Raju Pal (emailid: raju3131.pal@gmail.com) and Himanshu Mittal (emailid: himanshu.mittal224@gmail.com)
-The code template used is similar to code given at link: https://github.com/himanshuRepo/CKGSA-in-Python 
- and matlab version of the BBO at link: http://embeddedlab.csuohio.edu/BBO/software/
-
-Reference: D. Simon, Biogeography-Based Optimization, IEEE Transactions on Evolutionary Computation, in print (2008).
-@author: Dan Simon (http://embeddedlab.csuohio.edu/BBO/software/)
-
--- BBO File: Performing the Biogeography-Based Optimization(BBO) Algorithm 
-
-Code compatible:
- -- Python: 2.* or 3.*
-"""
-
 from __future__ import division
 import random
 import numpy
@@ -139,7 +123,7 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
 
         # Displaying the best fitness of each iteration
         if (l%1==0):
-               print(['At iteration '+ str(l+1)+ ' the best fitness is '+ str(gBestScore)]);
+        	print(['At iteration '+ str(l+1)+ ' the best fitness is '+ str(gBestScore)]);
 
     timerEnd=time.time()  
     s.endTime=time.strftime("%Y-%m-%d-%H-%M-%S")

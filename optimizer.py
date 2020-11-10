@@ -1,20 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Python code of Biogeography-Based Optimization (BBO)
-Coded by: Raju Pal (emailid: raju3131.pal@gmail.com) and Himanshu Mittal (emailid: himanshu.mittal224@gmail.com)
-The code template used is similar to code given at link: https://github.com/himanshuRepo/CKGSA-in-Python 
- and matlab version of the BBO at link: http://embeddedlab.csuohio.edu/BBO/software/
-
-Reference: D. Simon, Biogeography-Based Optimization, IEEE Transactions on Evolutionary Computation, in print (2008).
-@author: Dan Simon (http://embeddedlab.csuohio.edu/BBO/software/)
-
--- Main File: Calling the Biogeography-Based Optimization(BBO) Algorithm 
-                for minimizing of an objective Function
-
-Code compatible:
- -- Python: 2.* or 3.*
-"""
-
 import BBO as bbo
 import benchmarks
 import csv
@@ -39,10 +22,10 @@ BBO= True # Code by Raju Pal & Himanshu Mittal
 
 # Select benchmark function
 F1=True
-F2=False
-F3=False
-F4=False
-F5=False
+F2=True
+F3=True
+F4=True
+F5=True
 F6=False
 F7=False
 F8=False
@@ -69,7 +52,7 @@ NumOfRuns=2
 
 # Select general parameters for all optimizers (population size, number of iterations)
 PopulationSize = 30
-Iterations= 500
+Iterations= 5
 
 #Export results ?
 Export=True
@@ -105,7 +88,24 @@ for i in range (0, len(optimizer)):
                     out.close()
                 Flag=True # at least one experiment
                 
-if (Flag==False): # Faild to run at least one experiment
+if (Flag==False): # Failed to run at least one experiment
     print("No Optomizer or Cost function is selected. Check lists of available optimizers and cost functions") 
         
-        
+with open(ExportToFile) as csvfile:
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+
+    X = np.asarray([i for i in range(Iterations)])
+    Y = []
+    df = pd.read_csv(csvfile, delimiter=',')
+    print(df.head())
+    for i in range(5):
+        Y.append(np.asarray(df.iloc[i, 5:]))
+
+    plt.plot(X,Y, label='BBO')
+    plt.xlabel('iterations')
+    plt.ylabel('value')
+    plt.title('BBO')
+    plt.legend()
+    plt.show()
