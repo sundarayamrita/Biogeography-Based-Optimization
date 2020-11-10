@@ -14,20 +14,31 @@ Code compatible:
  -- Python: 2.* or 3.*
 """
 
-import numpy
+import numpy as np
 import math
 
 # define the function blocks
     
 def F1(x):
-    s=numpy.sum(x**2);
-    return s
+    #Sphere
+    return np.sum(np.square(x))
+
+def F2(x):
+    #unimodal schwefel
+    return np.sum(np.absolute(np.square(x)))
+    
+def F3(x):
+    #Multimodal schwefel
+    return np.sum(np.multiply(x, np.sin(x)))
 
 def getFunctionDetails(a):
     
     # [name, lb, ub, dim]
     param = {  0: ["F1",-100,100,30],
+               1: ["F2",-100,100,30],
+               2: ["F3",-100,100,30],
             }
+    # param = {0: ["F1",-100,100,30]}
     return param.get(a, "nothing")
 
 
