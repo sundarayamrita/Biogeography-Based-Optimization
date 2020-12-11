@@ -17,7 +17,7 @@ def selector(algo,func_details,popSize,Iter):
     
     
 # Select optimizers
-BBO= True # Code by Raju Pal & Himanshu Mittal
+BBO= True
 
 
 # Select benchmark function
@@ -47,12 +47,12 @@ optimizer=[BBO]
 benchmarkfunc=[F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15,F16,F17,F18,F19] 
         
 # Select number of repetitions for each experiment. 
-# To obtain meaningful statistical results, usually 30 independent runs are executed for each algorithm.
+# To obtain meaningful statistical results, usually 10 independent runs are executed for each algorithm.
 NumOfRuns=2
 
 # Select general parameters for all optimizers (population size, number of iterations)
-PopulationSize = 30
-Iterations= 5
+PopulationSize = 3
+Iterations= 100
 
 #Export results ?
 Export=True
@@ -72,7 +72,8 @@ for l in range(0,Iterations):
 
 for i in range (0, len(optimizer)):
     for j in range (0, len(benchmarkfunc)):
-        if((optimizer[i]==True) and (benchmarkfunc[j]==True)): # start experiment if an optimizer and an objective function is selected
+        # start experiment if an optimizer and an objective function is selected
+        if((optimizer[i]==True) and (benchmarkfunc[j]==True)):
             for k in range (0,NumOfRuns):
                 
                 func_details=benchmarks.getFunctionDetails(j)
@@ -96,14 +97,14 @@ with open(ExportToFile) as csvfile:
     import pandas as pd
     import numpy as np
 
-    X = np.asarray([i for i in range(Iterations)])
+    X = np.linspace(1,Iterations,Iterations)
     Y = []
     df = pd.read_csv(csvfile, delimiter=',')
-    print(df.head())
-    for i in range(5):
-        Y.append(np.asarray(df.iloc[i, 5:]))
-
-    plt.plot(X,Y, label='BBO')
+    
+    benchmark_funcs = ['Sphere', 'Unimodel Schwefel', 'Multimodal Schwefel', 'Multimodal Rastrigin','Multimodal Ackley']
+    for i in range(0, 10, 2):
+        Y = np.asarray(df.iloc[i, 5:])
+        plt.plot(X,Y, label=benchmark_funcs[int(i/2)])
     plt.xlabel('iterations')
     plt.ylabel('value')
     plt.title('BBO')

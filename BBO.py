@@ -13,8 +13,8 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
     s=solution()
 
     # Initializing BBO parameters
-    pmutate = 0.01; # initial mutation probability
-    Keep = 2; # elitism parameter: how many of the best habitats to keep from one generation to the next
+    pmutate = 0.01 # initial mutation probability
+    Keep = 2 # elitism parameter: how many of the best habitats to keep from one generation to the next
         
     # Initializing the parameters with default values
     fit = numpy.zeros(PopSize)
